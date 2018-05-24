@@ -1,4 +1,4 @@
-const getPrimes = (num) => (num > 0) ? Array
+const getPrimes = (num) => (num > 1) ? Array
     .from(new Array(num), (el, i) => i + 1)
     .filter((el) => {
         for (let i = 2; i < el; i++) {
