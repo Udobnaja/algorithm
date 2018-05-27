@@ -14,20 +14,24 @@ const getPrimes = (num) => (num > 0) ? Array
 
 console.log(getPrimes(8)); // [1, 2, 3, 5, 7]
 console.log(getPrimes(0)); //  []
-console.log(getPrimes(-1)); //  []
+console.log(getPrimes(51)); //  []
 
 
 const eratosthenesSieve = (num) => {
-    const res = [];
+    if (num <= 0){
+        return [];
+    }
+    const res = new Array(num).fill(true);
+    res[0] = false;
     res[1] = false;
 
     for (let i = 2; i <= num; i++) {
         res[i] = true;
     }
 
-    for (let i = 2; i*i <= num; i++) {
+    for (let i = 2; i*i < num; i++) {
         if (res[i] === true) {
-            for (let k = i*i; k <= num; k +=i ) {
+            for (let k = i*i; k < num; k +=i ) {
                 res[k] = false;
             }
         }
@@ -44,4 +48,4 @@ const eratosthenesSieve = (num) => {
 
 console.log(eratosthenesSieve(8));
 console.log(eratosthenesSieve(0));
-console.log(eratosthenesSieve(-1));
+console.log(eratosthenesSieve(7));

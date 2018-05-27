@@ -1,5 +1,12 @@
 const OPERATIONS = ['*', '-', '+', '%'];
 
+const OPERATION_LITERAL = {
+    '*': (a, b) => b * a,
+    '-': (a, b) => b - a,
+    '+': (a, b) => b + a,
+    '/': (a, b) => b / a
+};
+
 const calcTwo = (a, b, operation) => {
     switch (operation) {
         case '*':
@@ -84,11 +91,10 @@ const trueCalc = (notation) => {
     notation = notation.split(' ');
 
     for (const symbol of notation) {
-        if (OPERATIONS.includes(symbol)) {
-            let a = stack[stack.length - 1];
-            let b = stack[stack.length - 2];
-            stack.splice(-2, 2);
-            stack.push(calcTwo(a, b, symbol))
+        if (OPERATION_LITERAL[symbol] !== undefined) {
+            let a = stack.pop();
+            let b = stack.pop();
+            stack.push(calcTwo(OPERATION_LITERAL[symbol](a, b)))
         } else {
             stack.push(+symbol);
         }
