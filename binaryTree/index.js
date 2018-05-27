@@ -31,6 +31,30 @@ class BinaryTree {
         }
     }
 
+    DFS(value) {
+        const stack = [];
+
+        stack.push(this.root);
+
+        while (stack.length > 0) {
+            const node = stack.pop();
+
+            if (node.value === value) {
+                return node;
+            }
+
+            if (node.left !== null) {
+                stack.push(node.left);
+            }
+
+            if (node.right !== null) {
+                stack.push(node.right);
+            }
+        }
+
+        return null;
+    }
+
     createNode(value) {
         return {
             value,
@@ -49,4 +73,7 @@ binaryTree.addNode(7);
 binaryTree.addNode(12);
 
 console.log(binaryTree);
+
+console.log(binaryTree.DFS(7));
+console.log(binaryTree.DFS(11));
 
