@@ -20,20 +20,6 @@ console.log(sum(arr_1) - sum(arr_2));
 
 // Фиговина
 
-function Book(name, author) {
-    this.name = name;
-    this.author = author;
-    return this;
-}
-
-function Foo(className, name, author) {
-    return new className(name, author);
-}
-
-const book = Foo(Book, 'Учебник javascript', 'Петр Сергеев');
-
-console.log(book.name);
-
 // function Book(name, author) {
 //     this.name = name;
 //     this.author = author;
@@ -41,12 +27,26 @@ console.log(book.name);
 // }
 //
 // function Foo(className, name, author) {
-//     return Object.create(className.call(className.prototype, name, author));
+//     return new className(name, author);
 // }
 //
 // const book = Foo(Book, 'Учебник javascript', 'Петр Сергеев');
 //
 // console.log(book.name);
+
+function Book(name, author) {
+    this.name = name;
+    this.author = author;
+    return this;
+}
+
+function Foo(className, name, author) {
+    return Object.create(className.call(className.prototype, name, author));
+}
+
+const book = Foo(Book, 'Учебник javascript', 'Петр Сергеев');
+
+console.log(book.name, book instanceof Book);
 
 // Привязка контекста
 
@@ -62,3 +62,11 @@ obj.func();
 // type of undefined
 
 console.log(typeof (function(){})());
+
+console.log(typeof typeof undefined);
+
+// sum(1)(2)(5)(10) = 18
+
+const s_u_m = a => b => c => d => a + b + c + d;
+
+console.log(s_u_m(1)(2)(5)(10));
