@@ -29,9 +29,9 @@ const eratosthenesSieve = (num) => {
         res[i] = true;
     }
 
-    for (let i = 2; i*i < num; i++) {
+    for (let i = 2; i*i <= num; i++) {
         if (res[i] === true) {
-            for (let k = i*i; k < num; k +=i ) {
+            for (let k = i*i; k <= num; k +=i ) {
                 res[k] = false;
             }
         }
