@@ -70,3 +70,38 @@ console.log(typeof typeof undefined);
 const s_u_m = a => b => c => d => a + b + c + d;
 
 console.log(s_u_m(1)(2)(5)(10));
+
+console.log('true + false', true + false); // 1
+
+console.log('12 / "6"', 12 / "6"); // 2
+
+console.log('"number" + 15 + 3', "number" + 15 + 3); //"number153"
+
+console.log('15 + 3 + "number"', 15 + 3 + "number"); // '18number' // тут ошиблась
+
+console.log('[1] > null', [1] > null); //true
+
+console.log('"foo" + + "bar"', "foo" + + "bar"); // 'fooNaN'
+
+console.log("'true' == true", 'true' == true); // false // тут ошиблась
+
+console.log("false == 'false'", false == 'false'); // false
+
+console.log("null == ''", null == ''); //false
+
+console.log('!!"false" == !!"true"', !!"false" == !!"true"); // true
+
+console.log("[‘x’] == ‘x’", ['x'] == 'x'); // true
+
+console.log("[] + null + 1", [] + null + 1); // null1
+
+console.log('0 || "0" && {}', 0 || "0" && {}); // {} // я хз
+
+console.log('[1,2,3] == [1,2,3]', [1,2,3] == [1,2,3]); // false
+
+console.log('{}+[]+{}+[1]', {}+[]+{}+[1]); // [object Object][object Object]1 // Не угадала
+
+console.log('!+[]+[]+![]', !+[]+[]+![]); // truefalse // true понимаю - дальше не
+
+console.log(new Date(0) - 0); // 0 / ?
+console.log(new Date(0) + 0); // date0
