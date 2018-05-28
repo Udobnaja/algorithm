@@ -37,3 +37,22 @@ console.log(isPalindrome('А роза упала на лапу Азора'));
 // };
 //
 // console.log(isPalindrome('А роза упала на лапу Азора'));
+
+const getAnagrams = (...arr) => {
+  const result = [];
+  for (let j = 0; j < arr.length; j++) {
+      for (let i = j+1; i < arr.length; i++){
+          if (arr[j].length === arr[i].length) {
+              if (arr[j].toLowerCase().split('').sort().join('') === arr[i].toLowerCase().split('').sort().join('')){
+                  result.push([arr[j], arr[i]]);
+                  j++;
+                  break;
+              }
+          }
+      }
+  }
+
+  return result;
+};
+
+console.log(getAnagrams('нос', 'сон', 'снедь', 'днесь'));
