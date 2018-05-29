@@ -43,7 +43,11 @@ const getAnagrams = (...arr) => {
   for (let j = 0; j < arr.length; j++) {
       for (let i = j+1; i < arr.length; i++){
           if (arr[j].length === arr[i].length) {
-              if (arr[j].toLowerCase().split('').sort().join('') === arr[i].toLowerCase().split('').sort().join('')){
+              if (arr[j].toLowerCase().split('').sort().join('') === arr[i]
+                      .toLowerCase()
+                      .split('')
+                      .sort()
+                      .join('')){
                   result.push([arr[j], arr[i]]);
                   j++;
                   break;
