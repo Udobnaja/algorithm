@@ -1,49 +1,32 @@
-// const partition = (arr, left, right) => {
-//     let pivot = arr[Math.floor((left + right) / 2)]; // опорный элемент
-//
-//     while (left <= right) {
-//         while (arr[left] < pivot) {
-//             left++;
-//         }
-//
-//         while (arr[right] > pivot) {
-//             right--;
-//         }
-//
-//         if (left <= right) {
-//             [arr[left], arr[right]] = [arr[right], arr[left]];
-//             left++;
-//             right--;
-//         }
-//     }
-//
-//     return left;
-//
-// };
-//
-// const mergeSort = (arr, left, right) => {
-//     if (arr.length > 1) {
-//         const index = partition(arr, left, right);
-//
-//         if (left < index - 1) {
-//             mergeSort(arr, left, index - 1);
-//         }
-//
-//         if (index < right) {
-//             mergeSort(arr, index, right);
-//         }
-//     }
-//
-//     return arr;
-// };
-//
-// const arr = [3, 7, 1, 2, 4, 5, 6];
-//
-// console.log(mergeSort(arr, 0, arr.length - 1));
 
+const merge = (leftArr, rightArr) => {
+    const result = [];
+    let left = 0;
+    let right = 0;
 
-const mergeSort = (arr) => {
-    if (arr.length > 1) {
-        mergeSort()
+    while (left < leftArr.length && right < rightArr.length) {
+        if (leftArr[left] < rightArr[right]) {
+            result.push(leftArr[left++]);
+        } else {
+            result.push(rightArr[right++]);
+        }
     }
-}
+
+    return [...result, ...leftArr.slice(left), ...rightArr.slice(right)]
+};
+ const mergeSort = (arr) => {
+     if (arr.length <= 1) {
+         return arr;
+     }
+     const index = Math.floor(arr.length / 2);
+
+     const leftArr = arr.slice(0, index);
+     const rightArr = arr.slice(index);
+
+     return merge(mergeSort(leftArr), mergeSort(rightArr));
+ };
+
+//
+const arr = [3, 7, 1, 2, 4, 5, 6];
+//
+console.log(mergeSort(arr));
