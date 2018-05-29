@@ -35,31 +35,44 @@ class BinaryTree {
         const stack = [];
 
         stack.push(this.root);
+        let currentNode = this.root;
 
         while (stack.length > 0) {
             const node = stack.pop();
 
             if (node.value === value) {
-                return node;
+                currentNode = node;
+                break;
             }
 
             if (node.left !== null) {
+                node.left.parent = node;
                 stack.push(node.left);
             }
 
             if (node.right !== null) {
+                node.right.parent = node;
                 stack.push(node.right);
             }
         }
 
-        return null;
+        const path = [];
+        path.push(currentNode);
+
+        while (currentNode.parent !== null){
+            path.push(currentNode.parent);
+            currentNode = currentNode.parent;
+        }
+
+        return path.length === 1 ? [] : path;
     }
 
     createNode(value) {
         return {
             value,
             left: null,
-            right: null
+            right: null,
+            parent: null
         }
     }
 }
