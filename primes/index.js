@@ -21,8 +21,11 @@ const eratosthenesSieve = (num) => {
     if (num <= 0){
         return [];
     }
-    const res = new Array(num).fill(true);
-    res[0] = false;
+    // const res = new Array(num).fill(true);
+    // res[0] = false;
+
+    const res = [];
+
     res[1] = false;
 
     for (let i = 2; i <= num; i++) {
