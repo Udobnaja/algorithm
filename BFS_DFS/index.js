@@ -65,16 +65,34 @@ class Graph {
     //     }
     // }
 
+    // Для себя
+    // this.start this.end - не обязательно использовать как просы графа
+    // Используется очередь - с shift
+    // Стартовую ноду помечаем как помеченную
+    // Пушим ее в очередь
+    // И до тех пор пока очередь не пуста
+    // делаем каррент нодой - ноду первую, лежающую в очереди
+    //  если текущая нода равна конечной - то выходим из цикла
+    // берем ребра это нодф и проходимся в цикле по ребрам
+    // И если мы не ходили по этому ребку, то идем
+    // каждому ребру присваиваем родителем каррент ноду
+    // в очередь пушим ребро
+
+    // Вычисляем путь - в путь кладем нашу конечную ноду
+    // Следующей нодой ставим родителя это ноды и до тех пор пока есть следующий элемент в ноде
+    // в путь кладем нехт и нехт нодой делаем ноде парент
+
+
     BFS(start, end) {
-        const quene = [];
+        const queue = [];
         this.start = this.list[start];
         this.end = this.list[end];
 
         this.start.selected = true;
 
-        quene.push(this.start);
+        queue.push(this.start);
 
-        while (quene.length > 0) {
+        while (queue.length > 0) {
             const current = quene.shift();
 
             if (current === this.end) {
@@ -88,7 +106,7 @@ class Graph {
                 if (this.list[edge].selected === false) {
                     this.list[edge].selected = true;
                     this.list[edge].parent = current;
-                    quene.push(this.list[edge]);
+                    queue.push(this.list[edge]);
                 }
             }
         }
@@ -107,8 +125,6 @@ class Graph {
         }
 
         return path;
-
-
     }
 }
 
