@@ -14,9 +14,9 @@ const DIRECTION_MAP = {
 
 const getSpiral = (num) => {
     const result = [];
-   if (num <= 0) {
-       return result;
-   }
+    if (num < 1 || isNaN(num) || !Number.isInteger(num)) {
+        return result;
+    }
 
    const arr = Array.from(new Array(num*num), (el, i) => ++i);
    let direction = DIRECTION.LEFT;
