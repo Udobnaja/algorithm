@@ -69,6 +69,20 @@ console.log(typeof typeof undefined);
 
 const s_u_m = a => b => c => d => a + b + c + d;
 
+// каррирование с любым кол-м аргументов 
+const curryingSum = (value) => {
+    let acc = value;
+    const addNext = (next) => {
+        acc += next;
+        return addNext;
+    }
+    addNext.toString = addNext.valueOf = () => acc;
+  
+    return addNext;
+}
+
+console.log(curryingSum(2)(3).toString());
+
 console.log(s_u_m(1)(2)(5)(10));
 
 console.log('true + false', true + false); // 1
